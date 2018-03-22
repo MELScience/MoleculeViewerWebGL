@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ff32279484bf54186f74a961630422, type: 3}
+  m_Name: MELGraphicsSettings
+  m_EditorClassIdentifier: 
+  editorPresetIndex: 1
+  defaultHighPresetIndex: 2
+  defaultLowPresetIndex: 3
+  presets:
+  - name: Asus z00ad
+    gpuModels:
+    - PowerVR Rogue G6430
+    reducedShaderArrays: 1
+    crystalAtomsBudget: 900
+    crystalBondsBudget: 440
+    crystalSurfaceAtomsBudget: 9000
+    allowAutoFog: 0
+    particleMeshSf: 6
+    particleMeshFlat: 7
+    accurateDepthInParticles: 0
+    warmUpShaders: {fileID: 20000000, guid: ca0205532ad0eb343aaa6a7c29217130, type: 2}
+  - name: Daydream
+    gpuModels:
+    - Adreno (TM) 530
+    - Adreno (TM) 540
+    - Adreno (TM) 630
+    reducedShaderArrays: 0
+    crystalAtomsBudget: 4500
+    crystalBondsBudget: 1400
+    crystalSurfaceAtomsBudget: 15000
+    allowAutoFog: 1
+    particleMeshSf: 1
+    particleMeshFlat: 1
+    accurateDepthInParticles: 1
+    warmUpShaders: {fileID: 20000000, guid: 38597ffa50b04e94087313b8862a378b, type: 2}
+  - name: DefaultHigh
+    gpuModels: []
+    reducedShaderArrays: 0
+    crystalAtomsBudget: 3000
+    crystalBondsBudget: 950
+    crystalSurfaceAtomsBudget: 12000
+    allowAutoFog: 1
+    particleMeshSf: 1
+    particleMeshFlat: 1
+    accurateDepthInParticles: 1
+    warmUpShaders: {fileID: 20000000, guid: 38597ffa50b04e94087313b8862a378b, type: 2}
+  - name: DefaultLow
+    gpuModels: []
+    reducedShaderArrays: 1
+    crystalAtomsBudget: 1800
+    crystalBondsBudget: 700
+    crystalSurfaceAtomsBudget: 10000
+    allowAutoFog: 0
+    particleMeshSf: 1
+    particleMeshFlat: 1
+    accurateDepthInParticles: 1
+    warmUpShaders: {fileID: 20000000, guid: ca0205532ad0eb343aaa6a7c29217130, type: 2}
+  - name: Max PC
+    gpuModels: []
+    reducedShaderArrays: 0
+    crystalAtomsBudget: 30000
+    crystalBondsBudget: 6000
+    crystalSurfaceAtomsBudget: 18000
+    allowAutoFog: 1
+    particleMeshSf: 1
+    particleMeshFlat: 1
+    accurateDepthInParticles: 1
+    warmUpShaders: {fileID: 20000000, guid: 38597ffa50b04e94087313b8862a378b, type: 2}
+  particleShader: {fileID: 4800000, guid: c76a1a92960baf042ad1956ade738f62, type: 3}

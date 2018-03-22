@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1cd63554cf469348aaaf39edc5028ab, type: 3}
+  m_Name: Batch
+  m_EditorClassIdentifier: 
+  mode: 0
+  material: {fileID: 2100000, guid: f8bb8acb00e3fbd419e8f2fa27157076, type: 2}
+  ballsRendererPrototype: {fileID: 1648439781194828, guid: 7ef08b5a6128a40beac7a57b0cfad8b9,
+    type: 2}
+  bucketPrototype: {fileID: 1101759390247740, guid: 8925112ca71d740f689ac7cc854da098,
+    type: 2}
+  ballObjectPrototype: {fileID: 1840546446920114, guid: c57b6176bfd4161408087e46ca976ab0,
+    type: 2}
