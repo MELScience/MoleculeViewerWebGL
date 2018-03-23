@@ -13,6 +13,8 @@ public class MoleculeViewer : MonoBehaviour {
     {
         MelDB.Init();
 
+        StartCoroutine(CameraFov_Coroutine());
+
         JSImports.LoadComplete_Callback();
     }
 
@@ -66,6 +68,37 @@ public class MoleculeViewer : MonoBehaviour {
 
         JSImports.ShowCAS_Callback(cas, particleInfo != null);
     }
+
+    
+    private IEnumerator CameraFov_Coroutine()
+    {
+        Camera camera = Camera.main;
+        float initialFov = camera.fieldOfView;
+
+        int screenWidth = Screen.width;
+        int screenHeight = Screen.height;
+
+        while (true) {
+            if ((screenWidth != Screen.width) || (screenHeight != Screen.height)) {
+                screenWidth = Screen.width;
+                screenHeight = Screen.height;
+
+                float coeff = Mathf.Max(1f, screenHeight / (float)screenWidth);
+                float newFov = 2 * Mathf.Rad2Deg * Mathf.Atan(coeff * Mathf.Tan(0.5f * Mathf.Deg2Rad * initialFov));
+
+                Debug.Log(coeff);
+                Debug.Log(Mathf.PI * initialFov / 360f);
+                Debug.Log(newFov);
+
+                camera.fieldOfView = newFov;
+            }
+
+            yield return null;
+        }
+
+        yield break;
+    }
+    
 
     public void Update()
     {
