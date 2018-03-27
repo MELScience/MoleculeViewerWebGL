@@ -23,6 +23,9 @@ public class MoleculeViewer : MonoBehaviour {
     {
         Debug.Log("FindParticleCAS " + cas);
 
+        if (string.IsNullOrEmpty(cas))
+            return null;
+
         uint casNumber = MelDB.ParseCASNumber(cas);
 
         if (casNumber == 0)

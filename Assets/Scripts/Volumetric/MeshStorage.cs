@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MeshStorage
 {
+    private const string sphereMeshPath = "SphereMesh";
     private const float CONVEX_Z_DISPL = 0.05f; // to avoid z-fighting b/w billboards and convex meshes
 
     public enum MeshType
@@ -15,7 +16,8 @@ public class MeshStorage
         Convex25,
         Bond8,
         Convex85,
-        Billboard24
+        Billboard24,
+        TrueSphere
     }
 
     private static Dictionary<int, Mesh> _meshes = new Dictionary<int, Mesh>() { { 0, null } };
@@ -56,6 +58,9 @@ public class MeshStorage
             case MeshType.Billboard24:
                 mesh = CreateBatch(billboard24Vert, billboard24Tris, instancesInMesh);
                 break;
+            case MeshType.TrueSphere:
+                mesh = Resources.Load<Mesh>(sphereMeshPath);
+                break;
             default:
                 throw new NotImplementedException("Unsupported mesh type " + type);
         }
@@ -79,6 +84,7 @@ public class MeshStorage
             case MeshType.Bond8: return 8;
             case MeshType.Convex85: return convexHighVerts.Length;
             case MeshType.Billboard24: return 24;
+            case MeshType.TrueSphere: return 515;
             default:
                 throw new NotImplementedException("Unsupported mesh type " + type);
         }
@@ -371,9 +377,7 @@ public class MeshStorage
         63, 81, 69,     77, 82, 80,     77, 78, 82,     78, 83, 82,
         78, 79, 83,     79, 84, 83,     79, 16, 84,     16, 22, 84,
     };
-
-
-
+    
     private static Mesh CreateBatch(Vector3[] sourceVerts, int[] sourceTris, int atomsCount)
     {
         var verts = sourceVerts.Length;

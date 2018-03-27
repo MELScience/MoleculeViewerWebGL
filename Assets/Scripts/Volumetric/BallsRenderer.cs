@@ -457,7 +457,7 @@ public class BallsRenderer : MonoBehaviour
             materials = new Material[size];
             meshes = new MeshFilter[size];
 
-            Mesh atomMesh = MeshStorage.GetMesh(MelGraphicsSettings.preset.particleMeshSf, 1);
+            Mesh atomMesh = MeshStorage.GetMesh(MeshStorage.MeshType.TrueSphere, 1);
 
             for (int i = 0; i < size; i++) {
                 GameObject go = GameObject.Instantiate(settings.ballObjectPrototype, thisTransform);
@@ -492,18 +492,27 @@ public class BallsRenderer : MonoBehaviour
                 Vector4 thisPosition = data.positions[i];
                 thisPosition.w = 0f;
 
-                materials[i].SetVector(neighborId1, data.positions[data._neighborIndexes[i, 0]] - thisPosition);
-                materials[i].SetVector(neighborId1, data.positions[data._neighborIndexes[i, 1]] - thisPosition);
-                materials[i].SetVector(neighborId1, data.positions[data._neighborIndexes[i, 2]] - thisPosition);
-                materials[i].SetVector(neighborId1, data.positions[data._neighborIndexes[i, 3]] - thisPosition);
-                materials[i].SetVector(neighborId1, data.positions[data._neighborIndexes[i, 4]] - thisPosition);
-                materials[i].SetVector(neighborId1, data.positions[data._neighborIndexes[i, 5]] - thisPosition);
+                Vector4 n1 = data.positions[data._neighborIndexes[i, 0]] - thisPosition;
+                Vector4 n2 = data.positions[data._neighborIndexes[i, 1]] - thisPosition;
+                Vector4 n3 = data.positions[data._neighborIndexes[i, 2]] - thisPosition;
+                Vector4 n4 = data.positions[data._neighborIndexes[i, 3]] - thisPosition;
+                Vector4 n5 = data.positions[data._neighborIndexes[i, 4]] - thisPosition;
+                Vector4 n6 = data.positions[data._neighborIndexes[i, 5]] - thisPosition;
+
+                if (i == 0)
+                    Debug.LogFormat("{0} {1} {2}", (Vector3)n1, ((Vector3)n1).magnitude, n1.w);
+
+                materials[i].SetVector(neighborId1, n1);
+                materials[i].SetVector(neighborId2, n2);
+                materials[i].SetVector(neighborId3, n3);
+                materials[i].SetVector(neighborId4, n4);
+                materials[i].SetVector(neighborId5, n5);
+                materials[i].SetVector(neighborId6, n6);
             }
 
             for (int i = 0; i < size; i++) {
                 ApplyCachedVariables(materials[i]);
             }
-
 
             /*
            if (data.highlightColorsDirty || force) {
@@ -517,13 +526,11 @@ public class BallsRenderer : MonoBehaviour
         public override void EnableKeyword(string keyword, bool enable)
         {
             return;
+        }
 
-            for (int i = 0; i < size; i++) {
-                if (enable)
-                    materials[i].EnableKeyword(keyword);
-                else
-                    materials[i].DisableKeyword(keyword);
-            }
+        public override void UpdateMesh(Mesh newMesh)
+        {
+            return;
         }
 
         public override void SetAlphaParams(Vector4 alphaParams)
@@ -560,14 +567,6 @@ public class BallsRenderer : MonoBehaviour
         {
             for (int i = 0; i < size; i++)
                 materials[i].SetVector(settingsId, shaderParams);
-        }
-
-        public override void UpdateMesh(Mesh newMesh)
-        {
-            return;
-
-            //for (int i = 0; i < size; i++)
-            //    meshes[i].mesh = newMesh;
         }
 
         public override void UpdateEditorCamera(Vector4 cameraLocalPos, Vector4 cameraForward)
